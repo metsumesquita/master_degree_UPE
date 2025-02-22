@@ -218,13 +218,208 @@ Essas duas variáveis podem ser classificadas, respectivamente, como:
 - **E**: Qualitativa ordinal e quantitativa discreta. **(Certa)**
 
 ---
-
-### Exercício
-Sobre estatística aplicada, é correto o que se afirma em?
-
-- **a**: Parâmetros são medidas características de grupos. **(Incompleto)**
+Aqui está o conteúdo que você forneceu sobre **Exercícios de Fixação** e **Revisão**, organizado e formatado em **Markdown** para facilitar a visualização e o estudo:
 
 ---
+
+## Exercícios de Fixação - Estatística Aplicada
+
+### Questão
+Sobre estatística aplicada, é correto o que se afirma em?
+
+- **a**: Parâmetros são medidas características de grupos, determinadas por meio de uma amostra aleatória.  
+  **Errado**: Parâmetros estão diretamente ligados à **população**, não à amostra.
+
+- **b**: A estatística descritiva é uma técnica pela qual são coletados dados de uma amostra, a partir do que são tomadas decisões sobre uma determinada população.  
+  **Errado**: A estatística descritiva **não toma decisões**; ela apenas descreve os dados.
+
+- **c**: A caracterização de uma população se dá por meio da observação de todos os componentes que a integram.  
+  **Errado**: A caracterização de uma população pode ser feita por meio de uma **amostra**, não necessariamente de todos os componentes.
+
+- **d**: A estatística inferencial compreende um conjunto de técnicas destinadas à síntese de dados numéricos.  
+  **Errado**: A estatística inferencial **toma decisões** com base nos dados, não apenas sintetiza.
+
+- **e**: Censo é um processo utilizado para se medir as características de todos os membros de uma determinada população.  
+  **Certo**: O censo avalia **todos os membros** da população.
+
+---
+
+### Revisão do Exercício
+
+#### Parâmetros e Estatísticas
+- **a**: Os parâmetros são medidas características de grupos, determinadas por meio de uma **população**.  
+  **Correto**: Parâmetros estão associados à população.
+
+- **b**: A estatística inferencial é uma técnica que coleta dados de uma **amostra**, a partir do que são tomadas decisões sobre uma determinada população.  
+  **Correto**: A estatística inferencial usa amostras para inferir sobre a população.
+
+- **c**: A caracterização de uma população se dá por meio da observação de **parte** dos componentes que a integram.  
+  **Correto**: A caracterização pode ser feita por meio de uma **amostra**.
+
+- **d**: A estatística descritiva compreende um conjunto de técnicas destinadas à síntese de dados numéricos.  
+ 
+---
+
+### Resumo
+| Afirmação | Correção | Explicação |
+|-----------|----------|------------|
+| **a** | Errado | Parâmetros estão ligados à população, não à amostra. |
+| **b** | Errado | A estatística descritiva não toma decisões. |
+| **c** | Errado | A caracterização pode ser feita por amostra. |
+| **d** | Errado | A estatística inferencial toma decisões, não apenas sintetiza. |
+| **e** | Certo | O censo avalia todos os membros da população. |
+
+---
+
+
+
+Aqui está o conteúdo que você forneceu sobre o **Exercício** e a **Revisão**, organizado e formatado em **Markdown** para facilitar a visualização e o estudo:
+
+---
+
+## Exercício: Variável Quantitativa Discreta
+
+Assinale a alternativa que apresenta o conceito de **variável quantitativa discreta**:
+
+- **A**: É aquela que expressa o valor de uma quantidade, por exemplo, idade, quantidade de habitantes de uma cidade, quantidade de televisões numa casa.  
+  **Resposta certa**: Essa alternativa descreve corretamente uma variável quantitativa discreta, pois envolve contagens (números inteiros).
+
+- **B**: É aquela que separa os indivíduos em classes com uma determinada ordem, por exemplo, nível de escolaridade (fundamental, médio, superior).  
+  **Errado**: Isso descreve uma **variável qualitativa ordinal**.
+
+- **C**: É aquela que expressa uma medida como um valor real, por exemplo, peso e altura.  
+  **Errado**: Isso descreve uma **variável quantitativa contínua**.
+
+- **D**: É aquela que separa os indivíduos em classes, mas não é possível estabelecer uma ordem, por exemplo, gênero, esporte praticado (futebol, basquete, ciclismo).  
+  **Errado**: Isso descreve uma **variável qualitativa nominal**.
+
+---
+
+## Revisão do Exercício
+
+### Tipos de Variáveis
+
+1. **Variável Quantitativa Discreta**:
+   - **Definição**: Expressa valores de contagem (números inteiros).
+   - **Exemplos**: Idade, número de habitantes, quantidade de televisões.
+
+2. **Variável Qualitativa Ordinal**:
+   - **Definição**: Separa os indivíduos em classes com uma ordem específica.
+   - **Exemplos**: Nível de escolaridade (fundamental, médio, superior).
+
+3. **Variável Quantitativa Contínua**:
+   - **Definição**: Expressa medidas como valores reais (podem assumir qualquer valor em um intervalo).
+   - **Exemplos**: Peso, altura.
+
+4. **Variável Qualitativa Nominal**:
+   - **Definição**: Separa os indivíduos em classes, mas não há uma ordem específica.
+   - **Exemplos**: Gênero, esporte praticado (futebol, basquete, ciclismo).
+
+---
+
+### Resumo das Alternativas
+
+| Alternativa | Tipo de Variável | Explicação |
+|-------------|------------------|------------|
+| **A** | Quantitativa Discreta | Correta. Envolve contagens (números inteiros). |
+| **B** | Qualitativa Ordinal | Errado. Descreve classes com ordem específica. |
+| **C** | Quantitativa Contínua | Errado. Envolve medidas que podem assumir qualquer valor real. |
+| **D** | Qualitativa Nominal | Errado. Descreve classes sem ordem específica. |
+
+---
+# Representação dos Dados Discretos
+
+Considere a seguinte amostra de valores, relativos às disciplinas estudadas por 20 alunos do Gran Cursos Online:
+
+\[
+X = \{2, 8, 8, 6, 6, 8, 5, 5, 6, 7, 7, 7, 6, 6, 7, 5, 5, 7, 5, 5\}
+\]
+
+Esses valores são considerados **variáveis discretas**, pois são números inteiros. A partir deles, é possível formar tabelas para facilitar a compreensão.
+
+---
+
+## Passos para Construir uma Tabela de Frequência
+
+### 1. Ordenar os dados  
+Organize os valores em ordem crescente ou decrescente.
+
+Exemplo:  
+
+\[
+X_{\text{ordenado}} = \{ 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8\}
+\]
+
+### 2. Identificar os valores únicos  
+Liste todos os valores distintos presentes na amostra.
+
+\[
+\text{Valores únicos} = \{ 5, 6, 7, 8\}
+\]
+
+### 3. Contar a frequência de cada valor  
+Conte quantas vezes cada valor aparece na amostra.
+
+- 5 aparece **6 vezes**.  
+- 6 aparece **5 vezes**.  
+- 7 aparece **5 vezes**.  
+- 8 aparece **3 vezes**.  
+
+### 4. Frequência Simples Absoluta (\( F_i \))  
+A frequência simples absoluta representa o número de vezes que o elemento aparece no conjunto de dados.
+
+### 5. Calcular a Frequência Relativa  
+A frequência relativa é a razão entre a frequência absoluta e o número total de elementos.
+
+Fórmula:
+
+\[
+Fr = \frac{Fa}{n}
+\]
+
+Exemplo:
+
+\[
+Fr(5) = \frac{6}{20} = 0,30 \quad \text{(ou 30%)}
+\]
+
+### 6. Calcular a Frequência Acumulada  
+A frequência acumulada é o somatório das frequências absolutas até o valor atual.
+
+Exemplo:
+
+\[
+Fac(6) = 6 (5) + 5 (6) = 12
+\]
+
+---
+
+## Tabela de Frequência Completa
+
+| Valor (\( x \)) | Frequência Simples Absoluta (\( F_i \)) | Frequência Absoluta (\( Fa \)) | Frequência Relativa (\( Fr \)) | Frequência Acumulada (\( Fac \)) |
+|-----------------|----------------------------------------|--------------------------------|--------------------------------|----------------------------------|
+| 5               | 6                                      | 6                              | 0,30 (30%)                     | 6                                |
+| 6               | 5                                      | 5                              | 0,25 (25%)                     | 11                               |
+| 7               | 5                                      | 5                              | 0,25 (25%)                     | 16                               |
+| 8               | 3                                      | 3                              | 0,15 (15%)                     | 20                               |
+
+---
+
+## Interpretação da Tabela
+
+- **Frequência Simples Absoluta (\( F_i \))**: Número de vezes que o valor aparece na amostra.  
+- **Frequência Absoluta (\( Fa \))**: Número total de ocorrências para cada valor.  
+- **Frequência Relativa (\( Fr \))**: Proporção de cada valor em relação ao total.  
+- **Frequência Acumulada (\( Fac \))**: Soma das frequências absolutas até o valor atual.  
+
+---
+
+####Amplitude amostral Range
+é a diferença entre o maior e o menor valor da amostra .
+a aplitude se remete a auma idea de distancia , e para comprrender a ampliturede e tomado a base {4,8,8,6,6,8,5,5,5,5,6,7,8,6,5}
+onde o maiorvalor é 8 e o menor valor é 4
+a amplitude (A)= mairo valor - menor valor logo , 8 - 4 que é igual a 4
+
 
 
 ---
