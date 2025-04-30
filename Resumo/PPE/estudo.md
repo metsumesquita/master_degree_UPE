@@ -1,15 +1,5 @@
-# Concurso Público: Noções de Estatística e Probabilidade
 
-## Referências
-- [Aula 1 - USP](https://www.usp.br/gmab/discip/zab5711/aula1_slides.pdf)
-- [Khan Academy - Estatística e Probabilidade](https://www.khanacademy.org/math/statistics-probability)
-- [Vídeo Aula - YouTube](https://www.youtube.com/watch?v=sxQaBpKfDRk)
-- [Toda Matéria - Estatística](https://www.todamateria.com.br/estatistica-conceito-fases-metodo/)
-- [Brasil Escola - Estatística](https://brasilescola.uol.com.br/matematica/estatistica-2.htm)
-- [Alura - Frequência Absoluta e Relativa](https://www.alura.com.br/artigos/frequencia-absoluta-e-relativa)
-- [Provas de TI](https://www.provasdeti.com.br/cursos/001)
-
----
+#Probabilidade e processos estocásticos
 
 ## Noções de Estatística
 
@@ -656,11 +646,116 @@ P(\text{pessoa da escola}) = \frac{16}{30} \approx 0,53 \quad \text{(ou 53%)}
 | 6       | Ligar para pessoa da escola | 30 | 16 | \( \frac{16}{30} \approx 0,53 \) |
 
 ---
+Dos exemplos acima, verificamos que todo experimento ou fenômeno que envolva
+um elemento casual terá seu modelo probabilístico especificado quando estabelecermos:
+(a) um espaço amostral, Ω (chamado de omega), que consiste, no caso discreto, da enumeração (finita
+ou infinita) de todos os resultados possíveis do experimento em questão:
+Ω = {ω1, ω2, ..., ωn, ...}
+(os elementos de Ω são os pontos amostrais ou eventos elementares);
+(b) uma probabilidade, P(ω), para cada ponto amostral, de tal sorte que seja possível
+encontrar a probabilidade P(A) de qualquer subconjunto A de Ω, isto é, a probabilidade do que chamaremos de um evento aleatório ou simplesmente evento.
+
+Um experimento que pode fornecer diferentes resultados (contagens, medidas ou respostas) , muito embora seja repetido toda vez da mesma maneira.
+Caracteriza:
+A possibilidade de repetição sob as mesmas condições.
+ Os resultados não são determinados a priori.
+ Existência de regularidade quando o número de     repetições é grande. 
+O conjunto de todos os resultados possíveis de um experimento aleatório é chamado de espaço amostral
+
+---
+# 📊 PROBABILIDADE E ESTATÍSTICA
+
+## 🔍 O que é Estatística Inferencial?
+
+A **Estatística Inferencial** é composta por métodos que usam uma **amostra aleatória (M.A.)** dos dados coletados de uma população para **descrever** e **fazer inferências sobre a população**.
+
+Ela permite tirar conclusões sobre uma **população de interesse** com base em informações coletadas de uma **amostra**, e é amplamente usada em situações práticas do dia a dia.
+
+### Principais técnicas da Inferência Estatística:
+- **Estimação**
+- **Teste de hipóteses**
+
+---
+
+## 🧪 Conceitos Fundamentais
+
+### ✅ O que é uma população?
+Conjunto completo de elementos (indivíduos, objetos, dados) sobre os quais se deseja obter informações ou fazer inferências.
+
+### ✅ O que é uma amostra?
+Subconjunto da população, selecionado de forma aleatória, usado para representar a população em análises estatísticas.
+
+### ✅ O que é um parâmetro?
+Valor numérico (fixo, mas geralmente desconhecido) que descreve uma característica da **população**.
+
+<img src="https://fernandafperes.com.br/blog/intervalo-de-confianca/img2.png" width="300" height="200">
+---
+
+## 🎯 Estimativa Pontual
+
+A **estimativa pontual** é um valor único calculado a partir de uma amostra, utilizado como a melhor suposição para um **parâmetro populacional**.
+
+### Exemplo:
+Queremos estimar a altura média dos alunos de uma escola. Selecionamos aleatoriamente 30 alunos e calculamos a média das alturas. Esse valor é uma **estimativa pontual** da média populacional.
+
+| Parâmetro (População) | Significado                | Estimador (Amostra)           |
+|------------------------|----------------------------|-------------------------------|
+| **μ (mi)**             | Média populacional         | **\(\bar{x}\)** média amostral |
+| **σ² (sigma²)**        | Variância populacional     | **\(S²\)** variância amostral  |
+| **σ (sigma)**          | Desvio padrão populacional | **\(S\)** desvio padrão amostral |
+| **p₀**                 | Proporção populacional     | **p** proporção amostral       |
+
+> 🔹 **Estimador**: Variável aleatória que estima um parâmetro.  
+> 🔹 **Estimativa**: Valor numérico específico obtido para uma determinada amostra.
+
+---
+
+## 📈 Distribuição Amostral
+
+A **distribuição amostral** é a **distribuição de probabilidade** de um **estimador** (estatística) obtido a partir de várias amostras aleatórias extraídas da mesma população.
+
+É representada por uma **função densidade de probabilidade (FDP)**.
+
+### Exemplo visual:
+
+<img src="https://www.researchgate.net/profile/Ben-Batista/publication/354194757/figure/fig1/AS:1134251848282114@1647438122776/Figura-9-Grafico-representativo-da-distribuicao-amostral-da-media-i-i-utilizado-na.ppm" width="300" height="200">
+
+---
+
+## 🔒 Intervalo de Confiança
+
+É uma **faixa de valores**, calculada a partir da média amostral, que tem **alta probabilidade** de conter o verdadeiro valor da média da população.
+
+- **Nível de confiança**: \(1 - \alpha\)  
+  Ex: 95% → temos 95% de confiança de que o intervalo contém o parâmetro.
+- **Erro**: \(\alpha\) é a **probabilidade** de o parâmetro estar fora do intervalo.
+
+---
+
+## 📉 Teorema do Limite Central (TLC)
+
+O **TLC** afirma que:
+
+> Dada uma amostra aleatória de tamanho suficientemente grande, com variáveis aleatórias \(X_1, X_2, ..., X_n\) independentes e identicamente distribuídas (i.i.d.), a **distribuição da média amostral** tende a uma distribuição **normal**, independentemente da distribuição original dos dados.
+
+- Justifica o uso da **Normal** na inferência estatística.
+- Quanto maior o tamanho da amostra, mais próxima da normal será a distribuição amostral.
+
+---
 
 
-### Referências Adicionais
+### Referências
+- [Capıtulo_2 Probabilidade](https://www.ime.usp.br/~rvicente/EST01_Probabilidade.pdf)
+- [Distribuições Amostraise Estimação Pontual de Parâmetros](https://www.cin.ufpe.br/~rmcrs/ESAP/arquivos/cap07.pdf)
 - [Khan Academy - Noções Básicas de Probabilidade](https://pt.khanacademy.org/math/em-mat-probabilidade/x37cb49a28da24b56:probabilidade/x37cb49a28da24b56:nocoes-basicas-de-probabilidade/v/basic-probability)
 - [Livro: Probabilidade - Um Curso Moderno com Aplicações](https://z-library.sk/dl/3647248/f654b5)
 - [Livro: Probabilidade e Estatística para Engenharia e Ciências](https://z-library.sk/dl/2528875/a95223)
 - [Vídeo Aula - Gran Cursos Online](https://www.grancursosonline.com.br/aluno/curso/video/codigo/V3GmhgEULTQ%3D/v/8oEcakvbANQ%3D/c/E%2BeQFt%2Fioic%3D)
 -[Livro pagina 60 probabilidade](https://reader.z-library.sk/read/3909c4415e82ece44dab3f35caed913ff7eaed64ea87a0db23020b8b649b74e1/2528875/616ab7/probalidade-e-estat%C3%ADstica-paraengenharia-e-ci%C3%AAncias.html?download_location=https%3A%2F%2Fz-library.sk%2Fdl%2F2528875%2Fa95223%3Fdsource%3Drecommend)
+- [Aula 1 - USP](https://www.usp.br/gmab/discip/zab5711/aula1_slides.pdf)
+- [Khan Academy - Estatística e Probabilidade](https://www.khanacademy.org/math/statistics-probability)
+- [Vídeo Aula - YouTube](https://www.youtube.com/watch?v=sxQaBpKfDRk)
+- [Toda Matéria - Estatística](https://www.todamateria.com.br/estatistica-conceito-fases-metodo/)
+- [Brasil Escola - Estatística](https://brasilescola.uol.com.br/matematica/estatistica-2.htm)
+- [Alura - Frequência Absoluta e Relativa](https://www.alura.com.br/artigos/frequencia-absoluta-e-relativa)
+- [Provas de TI](https://www.provasdeti.com.br/cursos/001)
