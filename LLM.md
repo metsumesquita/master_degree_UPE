@@ -1,31 +1,7 @@
-LLM.md
 
-# LLM
-https://github.com/yunlong10/Awesome-LLMs-for-Video-Understanding
-https://www.oracle.com/br/artificial-intelligence/what-is-natural-language-processing/#:~:text=O%20processamento%20de%20linguagem%20natural%20(NLP)%20%C3%A9%20um%20ramo%20da,ou%20voz%20de%20linguagem%20natural.
-https://paperswithcode.com/task/large-language-model
-https://daily.dev/blog/deepseek-everything-you-need-to-know-about-this-new-llm-in-one-place
-https://medium.com/@tenyks_blogger/multimodal-large-language-models-mllms-transforming-computer-vision-76d3c5dd267f
-https://medium.com/data-science/how-does-an-image-text-foundation-model-work-05bc7598e3f2
-https://medium.com/data-hackers/introdu%C3%A7%C3%A3o-ao-processamento-de-linguagem-natural-natural-language-processing-nlp-be907cd06c71
-https://research.ibm.com/blog/what-are-foundation-models
-https://www.ibm.com/br-pt/think/topics/large-language-models
-https://rockcontent.com/br/blog/o-que-e-nlp/
-https://www.oracle.com/br/artificial-intelligence/what-is-natural-language-processing/#:~:text=O%20processamento%20de%20linguagem%20natural%20(NLP)%20%C3%A9%20um%20ramo%20da,ou%20voz%20de%20linguagem%20natural.
-https://www.nvidia.com/en-us/glossary/vision-language-models/
-https://www.ibm.com/think/topics/vision-language-models
-https://arxiv.org/pdf/2307.06435
-https://medium.com/data-science/navigating-the-new-types-of-llm-agents-and-architectures-309382ce9f88
-https://medium.com/@tenyks_blogger/multimodal-large-language-models-mllms-transforming-computer-vision-76d3c5dd267f
-https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10720163
-https://dl.acm.org/doi/pdf/10.1145/3641289
-https://resources.nvidia.com/en-us-large-language-model-ebooks
-https://www.freecodecamp.org/news/a-beginners-guide-to-large-language-models/
-https://www.research.ed.ac.uk/en/publications/biases-in-large-language-models-origins-inventory-and-discussion
+NLP (Natural Language Processing) is the broader field focused on enabling computers to understand, interpret, and generate human language. NLP encompasses many techniques and tasks such as sentiment analysis, named entity recognition, and machine translation.
 
-Claro! Abaixo está uma versão revisada e mais coesa do seu texto sobre Large Language Models (LLMs). Fiz melhorias na gramática, clareza e estrutura, mantendo todos os conceitos que você trouxe:
 
----
 
 # Large Language Models (LLMs)
 
@@ -39,22 +15,24 @@ Os LLMs tornaram-se mais acessíveis ao público com o surgimento de interfaces 
 
 Entretanto, mesmo antes dessa popularização, empresas como a IBM já vinham aplicando LLMs em diferentes contextos para aprimorar o Processamento de Linguagem Natural (PLN) e a Compreensão de Linguagem Natural (NLU).
 
+LLM é um subconjunto da area de NLP ou PLN,são modelos que possuem um tamanho muito grande,extensivo treinamento dos dados e a habilidade de performar em um amplo alcanço de tarefas de linguagem com minimo treinamneto expecifcio para tal tareda , como falado anteiormente Llma,GPT ou Claude series são exemplos de LLM que revolucionqaram o que é possivel em NLP(revolutionized what’s possible in NLP)
+
+
+
 A base estrutural dos LLMs é, em grande parte, a arquitetura Transformer — especialmente o modelo *Transformer Generativo Pré-Treinado* (GPT). Essa arquitetura é altamente eficaz no processamento de dados sequenciais, como o texto, permitindo que o modelo compreenda a ordem e as relações entre palavras em uma frase.
+
 
 Internamente, os LLMs são compostos por várias camadas de redes neurais profundas, com milhões (ou até bilhões) de parâmetros ajustados durante o treinamento. Um dos componentes mais importantes é o **mecanismo de atenção**, que permite ao modelo focar em partes relevantes da entrada para gerar saídas mais precisas e coerentes.
 
 Em resumo, os LLMs representam um grande avanço na inteligência artificial, sendo capazes de generalizar conhecimento e realizar tarefas complexas sem depender de regras específicas ou treinamentos restritos a um único domínio.
 
 ---
-
-
-
-
 ## ⚙️ Arquitetura Transformer: Fundamentos e Funcionamento
 
 A arquitetura **Transformer** é uma estrutura de redes neurais revolucionária na área de Processamento de Linguagem Natural (PLN). Ela se baseia no conceito de **atenção** (*attention mechanism*), que permite ao modelo identificar e focar nas partes mais relevantes de uma sequência de entrada, mesmo quando essa sequência é longa. Esse mecanismo resolve limitações enfrentadas por arquiteturas anteriores, como as redes recorrentes (*RNNs*) e as LSTMs, que sofriam com dificuldades de paralelização e perda de contexto em sequências extensas.
 
 Os **Transformers** são hoje considerados **estado da arte** (*state of the art*) para uma ampla variedade de aplicações, como tradução automática, geração de texto, resumo automático, análise de sentimentos e muito mais.
+Transformers have revolutionized the field of NLP with their ability to handle sequential data efficiently, allowing for parallelization and capturing long-range dependencies in text
 
 ###Funcionamento do tranformer
 um tranformer completo consiste de um enconder e um decoder , o enconder converte o texto de input ou o texto de entrada em uma representaçao intermediaria, e o decoder converte a representaçao intermediaria em um texto util ou que pode ser utilizado
@@ -259,6 +237,40 @@ Base dos modelos LLM, os Transformers foram projetados para processar dados sequ
 * Uso de técnicas de compressão e otimização (ex: quantização, LoRA)
 * Expansão para **multimodalidade**: texto + imagem + áudio + vídeo
 * **Fine-tuning** em domínios específicos (jurídico, médico, técnico)
-
 ---
 
+Sentiment analysis is a task that analyzes and interprets the text to determine the emotional inclination. It is typically a binary (positive and negative) or triple (positive, neutral, and negative) class classification problem. Evaluating sentiment analysis tasks is a popular Direction
+
+---
+Semantic understanding refers to the meaning or understanding of language and its associated concepts. It involves the interpretation and comprehension of words, phrases, sentences, and the relationships between them. Semantic processing goes beyond the surface level and focuses on understanding the underlying meaning and intent
+
+
+---
+###links
+
+https://www.coursera.org/specializations/natural-language-processing?utm_source=deeplearning-ai&utm_medium=institutions&utm_campaign=20211011-nlp-2-hugging_face-page-nlp-refresh
+https://course.fast.ai/
+https://huggingface.co/learn/computer-vision-course/unit0/welcome/welcome
+
+https://medium.com/data-science/redefining-conversational-ai-with-large-language-models-1ded152c3398
+https://github.com/yunlong10/Awesome-LLMs-for-Video-Understanding
+https://www.oracle.com/br/artificial-intelligence/what-is-natural-language-processing/#:~:text=O%20processamento%20de%20linguagem%20natural%20(NLP)%20%C3%A9%20um%20ramo%20da,ou%20voz%20de%20linguagem%20natural.
+https://paperswithcode.com/task/large-language-model
+https://daily.dev/blog/deepseek-everything-you-need-to-know-about-this-new-llm-in-one-place
+https://medium.com/@tenyks_blogger/multimodal-large-language-models-mllms-transforming-computer-vision-76d3c5dd267f
+https://medium.com/data-science/how-does-an-image-text-foundation-model-work-05bc7598e3f2
+https://medium.com/data-hackers/introdu%C3%A7%C3%A3o-ao-processamento-de-linguagem-natural-natural-language-processing-nlp-be907cd06c71
+https://research.ibm.com/blog/what-are-foundation-models
+https://www.ibm.com/br-pt/think/topics/large-language-models
+https://rockcontent.com/br/blog/o-que-e-nlp/
+https://www.oracle.com/br/artificial-intelligence/what-is-natural-language-processing/#:~:text=O%20processamento%20de%20linguagem%20natural%20(NLP)%20%C3%A9%20um%20ramo%20da,ou%20voz%20de%20linguagem%20natural.
+https://www.nvidia.com/en-us/glossary/vision-language-models/
+https://www.ibm.com/think/topics/vision-language-models
+https://arxiv.org/pdf/2307.06435
+https://medium.com/data-science/navigating-the-new-types-of-llm-agents-and-architectures-309382ce9f88
+https://medium.com/@tenyks_blogger/multimodal-large-language-models-mllms-transforming-computer-vision-76d3c5dd267f
+https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10720163
+https://dl.acm.org/doi/pdf/10.1145/3641289
+https://resources.nvidia.com/en-us-large-language-model-ebooks
+https://www.freecodecamp.org/news/a-beginners-guide-to-large-language-models/
+https://www.research.ed.ac.uk/en/publications/biases-in-large-language-models-origins-inventory-and-discussion
