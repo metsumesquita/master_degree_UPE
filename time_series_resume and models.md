@@ -1,5 +1,38 @@
 # 📊 Projeto de Análise e Previsão com Séries Temporais
 
+Com o avanço da tecnologia, houve um significativo aumento na produção de dados em todo o mundo. Paralelamente, observou-se um crescimento nas aplicações que utilizam esses dados, abrangendo diversas áreas, como saúde, indústria e monitoramento de temperatura/clima. Contudo, é comum ocorrer a perda de dados ou a presença de dados faltantes, sendo esses ausentes/faltantes originados por diversos motivos, como erros de transmissão, problemas de comunicação, defeitos nos sensores e erros humanos, constituindo um desafio para aqueles que buscam realizar previsões e análises.
+
+O problema torna-se mais complexo e profundo quando falamos de dados faltantes em séries temporais multivariadas, devido a fatores como sazonalidade, tendência, ruído branco, entre outros, que são elementos importantes a serem considerados na escolha de um método de imputação apropriado (Luo et al., 2018).
+
+Em relação às séries temporais, é importante destacar que estas podem apresentar tendências, manifestando-se com crescimento ou decréscimo ao longo do tempo, de forma linear ou não. Além disso, podem exibir sazonalidades, caracterizadas por fatores sazonais fixos e com frequência conhecida. Também é possível que as séries temporais apresentem dados cíclicos, os quais não seguem uma frequência definida. Uma maneira de visualizar a tendência e a sazonalidade em séries temporais é por meio de funções de autocorrelação (conforme mencionado por Luo et al., 2018) e outras técnicas de análise específicas.
+
+As séries temporais discretas são observações feitas em intervalos de tempo fixos, em que o intervalo de observações, conhecido como \(t\), pertence a um conjunto discreto. Enquanto as séries temporais contínuas são observações obtidas continuamente através de algum intervalo no tempo, em que \(T=[0,1]\).
+
+De maneira geral, podemos dizer que o que é feito é observar e analisar um conjunto de dados durante um tempo.
+
+As séries temporais podem ser sazonais, ter tendência e podem ter ambos ao mesmo tempo. A tendência de uma série temporal indica seu comportamento a longo prazo, se ela está estável, crescendo ou decrescendo. Podemos descrever um modelo com tendência em \(X_t = M_t + Y_t\), em que \(M_t\) é o componente de tendência e pode ser estimado através do método dos mínimos quadrados ou OLS, podendo ser visto como \(M_t = a_0 + a_1 \cdot t + a_2 \cdot t^2\). Os valores de \(a\) são ajustados para minimizar a função de soma de todos os valores \(N\) no tempo 1 \((X_t - M_t)^2\). A tendência linear é uma linha reta que sobe ou desce, a tendência constante é uma linha reta na horizontal, enquanto a tendência quadrática indica uma curva subindo ou descendo.
+
+Dizemos que temos a sazonalidade que ocorre em intervalos de tempo mais fáceis de serem previstos, como \(X_t = S_t + Y_t\), em que \(S_t\) é o componente de sazonalidade, resultando em uma função periódica que pode ser obtida através da soma das ondas senoidais.
+
+Já aqueles que possuem movimento cíclico tendem a ter intervalos de tempo irregulares, sendo o ciclo o aumento ou redução de frequência sem intervalos fixos. Alguns exemplos são as crises econômicas.
+
+Erros são os restos/sobras que existem junto às tendências e sazonalidades, sendo dados que ocorrem por causas aleatórias e não são explicados na série temporal, matematicamente.
+
+Conceitos de séries temporais:
+- Séries estacionárias: a média e a variância se mantêm constantes durante o tempo. Em princípio, séries com tendência e sazonalidade não são estacionárias, enquanto uma série temporal sazonal pode ser estacionária.
+
+Existem testes estatísticos para verificar a estacionariedade de uma série, entre eles:
+
+- **Dickey-Fuller (ADF):** Testa a presença de raiz unitária. Se rejeita a hipótese nula (de não-estacionariedade), a série é estacionária.
+- **KPSS (Kwiatkowski-Phillips-Schmidt-Shin):** Ao contrário do ADF, sua hipótese nula é que a série **é estacionária**.
+- **Phillips-Perron (PP):** Variante mais robusta do teste Dickey-Fuller, ajustando para heterocedasticidade e autocorrelação nos resíduos.
+
+
+Tipos de modelos:
+- Modelos univariados incluem os modelos que se baseiam em uma única série temporal histórica, como o ARIMA e modelos univariados de Box e Jenkins de 1970.
+
+O modelo ARIMA é um modelo autorregressivo integrado de médias móveis.
+
 
 ## 🧠 Conceitos Fundamentais
 
@@ -96,9 +129,6 @@ A compreensão desses conceitos é fundamental para a análise e modelagem efica
 * **Função de Autocovariância:** Mede a correlação entre valores da série em diferentes pontos no tempo (lags).
 * **Espectro:** Representação da distribuição da variância da série em diferentes frequências.
 
-
-## ⚙️ Modelos de Previsão
-
 ### Modelos Clássicos
 * **Modelos AR (Autoregressivos):** Utilizam valores passados da própria série para prever o valor futuro.
 * **Modelos MA (Médias Móveis):** Utilizam erros de previsão passados para prever o valor futuro.
@@ -153,19 +183,402 @@ Avaliar e comparar diferentes modelos de previsão em séries temporais com foco
     * **Métricas Utilizadas:** Definição das métricas de avaliação de desempenho (ex: MSE, RMSE, MAE, MAPE) com suas fórmulas e possíveis representações gráficas.
     * **Comparação de Desempenho:** Estratégia para comparar o desempenho dos diferentes modelos em termos de tempo de treinamento, erro de previsão e visualização dos resultados.
 
-## 🧼 Etapas de Pré-processamento de Séries Temporais
+# 📊 Análise e Modelagem de Séries Temporais
 
-### 🔹 Checklist
-* Verificar tipo de dado da coluna de datas: `pd.to_datetime(...)`
-* Remover colunas sem nome e sem valores
-* Eliminar colunas totalmente nulas
-* Reorganizar colunas e renomear se necessário
-* Verificar variáveis relevantes
-* Criar janelas de regressão
-* Normalizar (ex: Min-Max manual)
-* Fazer shuffle manual (se necessário)
-* Separar treino/teste
+Claro! Aqui está o seu conteúdo reorganizado e estruturado em um formato de Markdown mais limpo, com títulos hierárquicos consistentes, separação clara entre seções e uso padronizado de ícones e tópicos:
 
+---
+
+# 📊 Análise e Modelagem de Séries Temporais
+
+Perfeito, você listou diversas etapas importantes de uma pipeline completa de **modelagem e previsão de séries temporais**. Abaixo, reorganizei esse conteúdo em formato de **checklist estruturado em Markdown**, com categorias claras para facilitar a leitura, entendimento e execução.
+
+---
+
+# 📊 Pipeline Completo para Modelagem de Séries Temporais
+
+## 1. 📥 Carregamento e Limpeza dos Dados
+
+* [ ] Carregar os dados
+* [ ] **Remover colunas não pertinentes**
+* [ ] **Remover linhas duplicadas**
+* [ ] Converter colunas de data para `datetime`
+* [ ] Definir coluna de data como **índice** e garantir **ordem cronológica**
+
+---
+
+## 2. 🔍 Análise Exploratória (EDA)
+
+* [ ] Verificar **correlação entre variáveis** (caso multivariada) → `heatmap`
+* [ ] Verificar **comportamento de momentum**
+* [ ] Analisar presença de **white noise** (ruído branco)
+* [ ] Realizar **decomposição da série**
+
+  * [ ] Estratégia de decomposição (Ex: **exponencial**)
+  * [ ] Visualizar **tendência** e **sazonalidade**
+* [ ] Verificar e **interpolar dados faltantes**
+* [ ] Analisar **estacionalidade** com:
+
+  * [ ] **ACF (Função de Autocorrelação)**
+  * [ ] **PACF (Autocorrelação Parcial)**
+* [ ] Aplicar **diferenciação** caso a série não seja estacionária
+
+---
+
+## 3. 🧹 Pré-processamento e Transformações
+
+* [ ] Realizar **normalização** dos dados (MinMax, Z-score etc.)
+* [ ] Criar **janelas deslizantes** para regressão:
+
+  * [ ] Para o conjunto de **treinamento**
+  * [ ] Para o conjunto de **teste**
+* [ ] Separar **20% do treino para validação**
+* [ ] Selecionar **lags mais relevantes** com base em análise estatística ou feature importance
+
+---
+
+## 4. 📈 Treinamento de Modelos
+
+* [ ] Ajustar apenas com o **conjunto de treinamento**
+* [ ] Executar função de modelagem com os **parâmetros selecionados**
+* [ ] Treinar e ajustar o modelo (ex: **ARIMA**)
+
+  * [ ] Fit do modelo ARIMA
+  * [ ] Escolha dos melhores parâmetros (AIC, BIC, grid search)
+  * [ ] Previsão com o modelo ajustado
+* [ ] Avaliar resíduos:
+
+  * [ ] Plotar resíduos
+  * [ ] Verificar se os resíduos são ruído branco
+  * [ ] Avaliar previsões no conjunto de validação/teste
+
+---
+
+## 5. 🧪 Avaliação e Validação
+
+* [ ] Avaliar previsões com métricas:
+
+  * RMSE, MAE, MAPE, etc.
+* [ ] Validar o modelo no conjunto de validação
+* [ ] Confirmar que os resíduos estão centrados e sem autocorrelação
+
+---
+
+## 6. 🔗 Combinação de Modelos (Híbridos)
+
+* [ ] Testar combinação de modelos:
+
+  * **Modelo de ponderação**
+  * **Método de fusão**
+  * **KNN para combinação**
+  * **Combinação ponderada (PTI?)**
+* [ ] Estratégias de seleção dinâmica:
+
+  * **Dynamic Selection**
+  * **Oracle Selection**
+  * **Worst Selection**
+* [ ] Avaliar se a combinação melhora os resultados
+
+---
+
+## 7. 🧾 Considerações Finais
+
+* O **resíduo** é a diferença entre o valor real e o previsto pelo modelo
+
+  * Avaliar no conjunto de **treinamento**
+  * Avaliar no conjunto de **teste**
+
+o residuo é a diferença entre o valore real e o valor previsto pelo modelo X(arima)
+isso no conjunto de treinamento
+o residuo é a diferença entre o valore real e o valor previsto pelo modelo X(arima)
+
+---
+
+## 📈 Análise de Estacionariedade
+
+### 🔬 Teste de Dickey-Fuller Aumentado (ADF)
+
+O **ADF** verifica a presença de **raiz unitária**, ou seja, se a série é **não-estacionária**.
+
+#### 🧪 Hipóteses:
+
+* **H₀ (nula):** A série é **não-estacionária**
+* **H₁ (alternativa):** A série é **estacionária**
+
+#### 📊 Interpretação:
+
+* **p-valor < 0.05:** Rejeita-se H₀ → Série **estacionária**
+* **p-valor ≥ 0.05:** Falha em rejeitar H₀ → Série **não-estacionária**
+
+### 🧪 Exemplo de Código com ADF
+
+```python
+from statsmodels.tsa.stattools import adfuller
+import pandas as pd
+import os
+
+caminho = 'caminho_para_sua_pasta/Pernambuco'
+resultados_adf = []
+
+for arquivo in os.listdir(caminho):
+    if arquivo.endswith('.csv'):
+        df = pd.read_csv(os.path.join(caminho, arquivo))
+
+        if df.shape[1] >= 2:
+            nome_serie = arquivo.split('.')[0]
+            serie = df.iloc[:, 1].dropna()
+
+            try:
+                adf_result = adfuller(serie)
+                resultados_adf.append({
+                    'arquivo': nome_serie,
+                    'ADF Statistic': adf_result[0],
+                    'p-value': adf_result[1],
+                    'lags used': adf_result[2],
+                    'nobs': adf_result[3],
+                    'critical value (1%)': adf_result[4]['1%'],
+                    'critical value (5%)': adf_result[4]['5%'],
+                    'critical value (10%)': adf_result[4]['10%'],
+                    'conclusão': 'Estacionária' if adf_result[1] < 0.05 else 'Não estacionária'
+                })
+            except Exception as e:
+                print(f"Erro ao processar {nome_serie}: {e}")
+
+df_resultados_adf = pd.DataFrame(resultados_adf)
+print(df_resultados_adf)
+```
+
+---
+
+# 📚 Modelos de Séries Temporais
+
+## 📉 Modelos Clássicos
+
+### 🔹 AR, MA, ARMA, ARIMA e Extensões
+
+* **AR (Autoregressivo):** Usa valores passados para prever futuros.
+* **MA (Média Móvel):** Usa erros de previsão passados.
+* **ARMA:** Combina AR e MA.
+* **ARIMA:** Usa diferenciação para lidar com não-estacionariedade.
+* **SARIMA:** Extensão do ARIMA para sazonalidade.
+* **SARIMAX:** Inclui variáveis exógenas (preditores externos).
+
+### 🔹 Domínios de Estimação
+
+* **Domínio do Tempo:** Estimação por máxima verossimilhança (ex: modelos ARIMA).
+* **Domínio da Frequência:** Análise espectral com Transformada de Fourier, periodograma e filtros.
+
+---
+
+## 🤖 Modelos de Aprendizado de Máquina
+
+### 🔹 SVM (Support Vector Machines)
+
+* Usado para classificação e **regressão** em séries temporais.
+* **Linear SVM:** Para dados linearmente separáveis.
+* **Kernel Trick:** Para dados não lineares.
+* **Decision Boundary:** Superfície que separa classes ou define função de regressão.
+
+### 🔹 Redes Neurais
+
+* **MLP:** Feedforward com múltiplas camadas.
+
+* **RNN:** Redes com memória temporal:
+
+  * Estado oculto: \$h^{(t)} = f(Ux^{(t)} + Wh^{(t-1)})\$
+  * Funções de ativação: `tanh`, `ReLU`
+
+* **LSTM (Long Short-Term Memory):**
+
+  * Variante de RNN com mecanismos de memória.
+  * Lida com **dependências de longo prazo**
+  * Resolve problemas de **vanishing/exploding gradients**
+
+### 🔹 Arquiteturas Híbridas
+
+* Exemplo: **SARIMA + LSTM**
+* Combinam pontos fortes de modelos estatísticos e redes neurais
+
+---
+
+# 🚀 Otimização de Modelos
+
+## 🔸 Algoritmos Evolutivos
+
+### PSO (Particle Swarm Optimization)
+
+* Inspirado em enxames (pássaros, peixes)
+* Cada partícula busca a melhor solução
+* Útil para otimizar hiperparâmetros (ex: redes, SVM, ARIMA)
+
+---
+
+# 🧪 Metodologia Proposta
+
+## 🎯 Objetivo Geral
+
+Avaliar e comparar diferentes modelos de previsão em séries temporais quanto a:
+
+* Desempenho
+* Robustez
+* Eficiência computacional
+
+## 🧱 Etapas do Projeto
+
+1. **Contextualização do Problema**
+2. **Objetivos Geral e Específicos**
+3. **Trabalhos Relacionados**
+4. **Perguntas de Pesquisa**
+5. **Metodologia Proposta**
+6. **Metodologia Experimental**
+
+   * Arquiteturas dos modelos (ex: ordem do ARIMA, número de camadas LSTM)
+   * Estratégia de treino/teste
+   * Escolha de hiperparâmetros e otimizadores
+   * Métricas (ex: MSE, RMSE, MAE, MAPE)
+   * Comparação de desempenho (gráficos, tabelas, tempo de execução)
+
+---
+
+
+## 📈 Análise de Estacionariedade com Teste de Dickey-Fuller Aumentado (ADF)
+
+Ao trabalhar com séries temporais, um passo essencial é verificar se a série é **estacionária**. Modelos como **ARIMA** exigem que a série seja estacionária — isto é, que suas propriedades estatísticas como **média**, **variância** e **autocorrelação** não mudem ao longo do tempo.
+
+### 🔍 Entendendo o Teste ADF
+
+O **ADF (Augmented Dickey-Fuller)** é um teste estatístico que verifica a presença de uma **raiz unitária**, ou seja, se a série é **não-estacionária**.
+
+#### 🧪 Hipóteses do Teste:
+
+- **H₀ (nula):** A série é **não-estacionária** (possui raiz unitária).
+- **H₁ (alternativa):** A série é **estacionária** (não possui raiz unitária).
+
+#### 📊 Interpretação do p-valor:
+
+- Se **p-valor < 0.05** (nível de significância comum), **rejeitamos H₀** → A série é **estacionária**.
+- Se **p-valor ≥ 0.05**, **falhamos em rejeitar H₀** → A série é **não-estacionária**.
+
+### 🧪 Aplicação do Teste ADF em Vários Arquivos
+
+O trecho de código abaixo percorre arquivos de séries temporais em uma pasta, aplica o teste ADF e armazena os resultados:
+
+```python
+from statsmodels.tsa.stattools import adfuller
+import pandas as pd
+import os
+
+# Caminho para os arquivos por estado
+caminho = 'caminho_para_sua_pasta/Pernambuco'  # exemplo
+
+# Lista para armazenar resultados
+resultados_adf = []
+
+# Iterar sobre os arquivos CSV da pasta
+for arquivo in os.listdir(caminho):
+    if arquivo.endswith('.csv'):
+        df = pd.read_csv(os.path.join(caminho, arquivo))
+
+        # Verifica se há uma coluna temporal e de dados
+        if df.shape[1] >= 2:
+            nome_serie = arquivo.split('.')[0]
+            serie = df.iloc[:, 1].dropna()
+
+            try:
+                adf_result = adfuller(serie)
+
+                resultados_adf.append({
+                    'arquivo': nome_serie,
+                    'ADF Statistic': adf_result[0],
+                    'p-value': adf_result[1],
+                    'lags used': adf_result[2],
+                    'nobs': adf_result[3],
+                    'critical value (1%)': adf_result[4]['1%'],
+                    'critical value (5%)': adf_result[4]['5%'],
+                    'critical value (10%)': adf_result[4]['10%'],
+                    'conclusão': 'Estacionária' if adf_result[1] < 0.05 else 'Não estacionária'
+                })
+            except Exception as e:
+                print(f"Erro ao processar {nome_serie}: {e}")
+
+# Converter resultados para DataFrame
+df_resultados_adf = pd.DataFrame(resultados_adf)
+print(df_resultados_adf)
+
+
+
+# Análise de Estacionariedade com Teste de Dickey-Fuller Aumentado (ADF)
+
+Ao trabalhar com séries temporais, um passo essencial é verificar se a série é **estacionária**. Modelos como **ARIMA** exigem que a série seja estacionária — isto é, que suas propriedades estatísticas como **média**, **variância** e **autocorrelação** não mudem ao longo do tempo.
+
+## 📌 Teste de Dickey-Fuller Aumentado (ADF)
+
+O **ADF (Augmented Dickey-Fuller)** é um teste estatístico que verifica a presença de uma **raiz unitária**, ou seja, se a série é **não-estacionária**.
+
+### 🧪 Hipóteses do Teste:
+
+- **H₀ (nula):** A série é **não-estacionária** (possui raiz unitária).
+- **H₁ (alternativa):** A série é **estacionária** (não possui raiz unitária).
+
+### 📈 Interpretação do p-valor:
+
+- Se **p-valor < 0.05** (nível de significância comum), **rejeitamos H₀** → A série é **estacionária**.
+- Se **p-valor ≥ 0.05**, **falhamos em rejeitar H₀** → A série é **não-estacionária**.
+
+---
+
+## 📂 Aplicando o Teste ADF em Arquivos de Séries Temporais
+
+O trecho de código abaixo percorre os arquivos de séries temporais, aplica o teste de Dickey-Fuller e armazena os resultados em um DataFrame.
+
+```python
+from statsmodels.tsa.stattools import adfuller
+import pandas as pd
+import os
+
+# Caminho para os arquivos por estado
+caminho = 'caminho_para_sua_pasta/Pernambuco'  # exemplo: pode ser alterado dinamicamente
+
+# Lista para armazenar resultados
+resultados_adf = []
+
+# Iterar sobre os arquivos CSV da pasta
+for arquivo in os.listdir(caminho):
+    if arquivo.endswith('.csv'):
+        df = pd.read_csv(os.path.join(caminho, arquivo))
+
+        # Verifica se há uma coluna temporal e de dados
+        if df.shape[1] >= 2:
+            nome_serie = arquivo.split('.')[0]  # nome do arquivo sem extensão
+            serie = df.iloc[:, 1].dropna()  # considera a segunda coluna como série
+
+            try:
+                adf_result = adfuller(serie)
+
+                resultados_adf.append({
+                    'arquivo': nome_serie,
+                    'ADF Statistic': adf_result[0],
+                    'p-value': adf_result[1],
+                    'lags used': adf_result[2],
+                    'nobs': adf_result[3],
+                    'critical value (1%)': adf_result[4]['1%'],
+                    'critical value (5%)': adf_result[4]['5%'],
+                    'critical value (10%)': adf_result[4]['10%'],
+                    'conclusão': 'Estacionária' if adf_result[1] < 0.05 else 'Não estacionária'
+                })
+            except Exception as e:
+                print(f"Erro ao processar {nome_serie}: {e}")
+
+# Converter resultados para DataFrame
+df_resultados_adf = pd.DataFrame(resultados_adf)
+
+# Exibir os resultados
+print(df_resultados_adf)
+---
+O Teste ADF é uma ferramenta fundamental na análise de séries temporais. Ele permite identificar se transformações como diferenciação (differencing) são necessárias antes de aplicar modelos como ARIMA ou SARIMA. Uma vez identificada a presença de não estacionariedade, podemos aplicar transformações e reavaliar com o ADF até que a estacionariedade seja alcançada.
+
+
+--- 
 ### 🔗 Referências
 * [Pré-processamento de Séries Temporais - 365 Data Science](https://365datascience.com/tutorials/time-series-analysis-tutorials/pre-process-time-series-data/)
 * [Preprocessing para aprendizado supervisionado - Towards Data Science](https://towardsdatascience.com/preprocessing-time-series-data-for-supervised-learning-2e27493f44ae)
@@ -209,6 +622,10 @@ https://www.datacamp.com/tutorial/arima
 
 https://www.kaggle.com/code/phunghieu/arima-from-scratch
 
+
+
+\subsection{Classical Statistical methods:}
+For univariate time series, methods such as interpolation and autoregressive models, such as ARIMA~\cite{bartholomew1971time} and SARIMA~\cite{hamzaccebi2008improving}), are often more useful. However, when dealing with the complexity of MTS, they may not fully capture the relationships between different variables in the dataset.
 ####o que e o modelo arima
 
  é um modelo estatístico amplamente utilizado para previsão de séries temporais.
@@ -218,13 +635,12 @@ Média Móvel (MA): A modelagem do erro como uma combinação linear de erros an
 Integração (I): Diferenças sucessivas da série para torná-la estacionária.
 
 
-
+O modelo ARIMA é um modelo autorregressivo integrado de médias móveis.
 
 
 
 ####o que é o sarima
 Quando há sazonalidade nos dados, o modelo SARIMA (Seasonal ARIMA) é uma extensão do ARIMA, que incorpora componentes sazonais, combinando variações sazonais e não sazonais. Ele é conhecido como um modelo multiplicativo
-
 
 
 
@@ -241,11 +657,7 @@ contudo quando os dados não estao linearmente separados , as funçoes de kernel
 
 linear svms sao usadas com  linearly separable data, o que significa que os dados nao precisam de nenhuma forma serem transformados para separar os dados de diferentes classes. 
 
- 
 ### 🔸The decision boundary
-
-
-
 
 ### 🔸 LSTM e Deep Learning
 - [LSTM com Tensorflow/Keras - Curiousily](https://curiousily.com/posts/time-series-forecasting-with-lstms-using-tensorflow-2-and-keras-in-python/)
@@ -535,136 +947,114 @@ Outras técnicas e conceitos importantes incluem:
 ```
 
 ---
+# 📚 Repositório de Links e Materiais
 
-### 🔸Hybrid Mode
--https://medium.com/@preeti.rana.ai/hybrid-classifiers-time-series-forecasting-88594988cc44
--https://subashpalvel.medium.com/time-series-forecasting-with-prophet-and-lstm-hybrid-mode-75f5295605e5
--https://www.youtube.com/watch?v=E2_IhBKxBxM
+## 🎓 Aulas e Google Classroom
 
-## 🤖 Otimização de Modelos
+- [Google Classroom - Aula](https://classroom.google.com/c/NzQ4MzgyNzkxOTgz/m/Njk5MzYzNzY5OTEx/details)
+- [YouTube - Aula LSTM Parte 1](https://www.youtube.com/watch?v=FbxTVRfQFuI&list=PLEiEAq2VkUUIYQ-mMRAGilfOKyWKpHSip&index=4)
+- [YouTube - Aula LSTM Parte 2](https://www.youtube.com/watch?v=lWkFhVq9-nc&t=214s)
 
-### Algoritmos Evolutivos
-- [PSO explicação simples com Python - Nathan.fun](https://nathan.fun/posts/2016-08-17/simple-particle-swarm-optimization-with-python/)
-- [PSO em Python - GeeksforGeeks](https://www.geeksforgeeks.org/implementation-of-particle-swarm-optimization/)
-- [PSO Explicação prática - Medium](https://medium.com/data-science/what-the-hell-is-particle-swarm-optimization-pso-simplest-explanation-in-python-be296fc3b1ab)
-- [PSO código e visualização - Medium](https://towardsdatascience.com/swarm-intelligence-coding-and-visualising-particle-swarm-optimisation-in-python-253e1bd00772/)
-- [PSO implementado - Medium](https://induraj2020.medium.com/implementing-particle-swarm-optimization-in-python-c59278bc5846)
+## 💻 Google Colab e Notebooks
 
-## 🔎 Artigos Científicos e Livros
+- [Colab - Exercícios de LSTM](https://colab.research.google.com/drive/1Vs0Po5UXSaaGwQ7aFXIXmzJlO2ltv9RV?usp=sharing&authuser=0)
 
-### Livros Base
-- *Análise de Séries Temporais* – Morettin & Toloi
-- *Econometria Básica* – Damodar Gujarati
-- *Elementos de Estatística Computacional* – Frery & Cribari Neto
-- *Machine Learning* – Tom Mitchell  
-  [PDF](https://www.cs.cmu.edu/~tom/files/MachineLearningTomMitchell.pdf)
+## 🧠 Redes Neurais Recorrentes (RNN, LSTM, GRU)
 
-### Artigos do Prof. Fausto
-- [IEEExplore 2014 - Previsão com Híbrido PSO + SVM](https://ieeexplore.ieee.org/abstract/document/6974534)
-- [Neurocomputing 2015 - Híbrido com Wavelet](https://www.sciencedirect.com/science/article/abs/pii/S0925231215016057)
-- [Knowledge-Based Systems 2019 - ELM Otimizado](https://www.sciencedirect.com/science/article/abs/pii/S0950705119301327)
-- [IEEE 2021 - Forecast com PSO + Deep](https://ieeexplore.ieee.org/abstract/document/9340584)
+- [Kaggle - RNN Tutorial por kcsener](https://www.kaggle.com/code/kcsener/8-recurrent-neural-network-rnn-tutorial)
+- [Kaggle - LSTM e GRU Tutorial por thebrownviking20](https://www.kaggle.com/code/thebrownviking20/intro-to-recurrent-neural-networks-lstm-gru)
+- [Kaggle - Decomposição de Séries Temporais](https://www.kaggle.com/code/chanakyavivekkapoor/decomposing-time-series-data)
 
-### outros artigos
-- [Forecasting with artificial neural networks:The state of the art](https://www.oscogen.ethz.ch/members/literature_restricted%20access/ann_for_001.pdf)
+## 📁 GitHub e Artigos Técnicos
+
+- [GitHub - BRITS](https://github.com/caow13/BRITS)
+- [NeurIPS Paper 2018 - BRITS](https://papers.nips.cc/paper_files/paper/2018/file/734e6bfcd358e25ac1db0a4241b95651-Paper.pdf)
+- [PapersWithCode - BRITS](https://paperswithcode.com/paper/brits-bidirectional-recurrent-imputation-for)
 
 ---
 
-## 🔗 Referências e Leituras Recomendadas
+## 🔸 Hybrid Mode (Modelos Híbridos)
 
-### 📚 Livros Base
-* *Análise de Séries Temporais* – Morettin & Toloi
-* *Econometria Básica* – Damodar Gujarati
-* *Elementos de Estatística Computacional* – Frery & Cribari Neto
-* [Machine Learning - Tom Mitchell (PDF)](https://www.cs.cmu.edu/~tom/files/MachineLearningTomMitchell.pdf)
+- [Medium - Classificadores Híbridos em Séries Temporais](https://medium.com/@preeti.rana.ai/hybrid-classifiers-time-series-forecasting-88594988cc44)
+- [Medium - Prophet + LSTM](https://subashpalvel.medium.com/time-series-forecasting-with-prophet-and-lstm-hybrid-mode-75f5295605e5)
+- [YouTube - Tutorial Híbrido LSTM + Prophet](https://www.youtube.com/watch?v=E2_IhBKxBxM)
+
+---
+
+## 🤖 Otimização de Modelos
+
+### ⚙️ Algoritmos Evolutivos (PSO)
+
+- [PSO explicação simples com Python - Nathan.fun](https://nathan.fun/posts/2016-08-17/simple-particle-swarm-optimization-with-python/)
+- [PSO em Python - GeeksforGeeks](https://www.geeksforgeeks.org/implementation-of-particle-swarm-optimization/)
+- [PSO explicação prática - Medium](https://medium.com/data-science/what-the-hell-is-particle-swarm-optimization-pso-simplest-explanation-in-python-be296fc3b1ab)
+- [PSO código e visualização - Towards Data Science](https://towardsdatascience.com/swarm-intelligence-coding-and-visualising-particle-swarm-optimisation-in-python-253e1bd00772/)
+- [PSO implementado em Python - Medium](https://induraj2020.medium.com/implementing-particle-swarm-optimization-in-python-c59278bc5846)
+
+---
+
+## 🔎 Artigos Científicos e Livros
+
+### 📘 Livros Base
+
+- *Análise de Séries Temporais* – Morettin & Toloi  
+- *Econometria Básica* – Damodar Gujarati  
+- *Elementos de Estatística Computacional* – Frery & Cribari Neto  
+- *Machine Learning* – Tom Mitchell ([PDF](https://www.cs.cmu.edu/~tom/files/MachineLearningTomMitchell.pdf))
 
 ### 📄 Artigos do Prof. Fausto
-* [Previsão com Híbrido PSO + SVM (IEEExplore 2014)](https://ieeexplore.ieee.org/abstract/document/6974534)
-* [Híbrido com Wavelet (Neurocomputing 2015)](https://www.sciencedirect.com/science/article/abs/pii/S0925231215016057)
-* [ELM Otimizado (Knowledge-Based Systems 2019)](https://www.sciencedirect.com/science/article/abs/pii/S0950705119301327)
-* [Forecast com PSO + Deep (IEEE 2021)](https://ieeexplore.ieee.org/abstract/document/9340584)
 
-### 🔎 Análise e Detecção de Anomalias em Séries Temporais
-* [Deep Learning for Time Series Anomaly Detection: A Survey (arXiv)](https://arxiv.org/abs/1905.13628)
-* [Anomaly detection in time series: a comprehensive evaluation (ScienceDirect)](https://www.sciencedirect.com/science/article/pii/S0378437121004076)
-* [A Review on Outlier/Anomaly Detection in Time Series Data (IEEE)](https://ieeexplore.ieee.org/document/4626688)
-* [Deep Learning for Anomaly Detection in Time-Series Data: Review, Analysis, and Guidelines (ACM)](https://dl.acm.org/doi/full/10.1145/3691338)
-* [Time-Series Anomaly Detection Service at Microsoft (ACM)](https://dl.acm.org/doi/abs/10.14778/3538598.3538602)
-* [Anomaly Detection on Time Series (ACM)](https://dl.acm.org/doi/abs/10.1145/3292500.3330680)
-* [Time Series Anomaly Detection Using CNN and Transfer Learning (IEEE)](https://ieeexplore.ieee.org/abstract/document/8926446)
+- [IEEExplore 2014 - Previsão com Híbrido PSO + SVM](https://ieeexplore.ieee.org/abstract/document/6974534)
+- [Neurocomputing 2015 - Híbrido com Wavelet](https://www.sciencedirect.com/science/article/abs/pii/S0925231215016057)
+- [Knowledge-Based Systems 2019 - ELM Otimizado](https://www.sciencedirect.com/science/article/abs/pii/S0950705119301327)
+- [IEEE 2021 - Forecast com PSO + Deep Learning](https://ieeexplore.ieee.org/abstract/document/9340584)
 
-### 🧠 Previsão Híbrida e Otimização
-* [Hybrid Time Series Forecasting Methods for Travel Time Prediction (ScienceDirect)](https://www.sciencedirect.com/science/article/pii/S111001682100613X)
-* [Understanding Memetic Algorithms (IndiaAI)](https://indiaai.gov.in/article/understanding-memetic-algorithm)
-* [Computationally Efficient Hybrid ARIMA-SVR Model (IEEE)](https://ieeexplore.ieee.org/abstract/document/9523565)
-* [Memetic Algorithm for Pattern Recognition (CBRN)](https://sbic.org.br/eventos/cbrn_2007/50100078-2/)
-* [PSO explicação simples com Python - Nathan.fun](https://nathan.fun/posts/2016-08-17/simple-particle-swarm-optimization-with-python/)
-* [PSO em Python - GeeksforGeeks](https://www.geeksforgeeks.org/implementation-of-particle-swarm-optimization/)
-* [PSO Explicação prática - Medium](https://medium.com/data-science/what-the-hell-is-particle-swarm-optimization-pso-simplest-explanation-in-python-be296fc3b1ab)
-* [PSO código e visualização - Medium](https://towardsdatascience.com/swarm-intelligence-coding-and-visualising-particle-swarm-optimisation-in-python-253e1bd00772/)
-* [PSO implementado - Medium](https://induraj2020.medium.com/implementing-particle-swarm-optimization-in-python-c59278bc5846)
+### 📑 Outros Artigos
 
-### 🧮 Modelos ARIMA e SARIMA
-* [ARIMA do zero em Python - Medium](https://medium.com/analytics-vidhya/arima-model-from-scratch-in-python-489e961603ce)
-* [Como o ARIMA funciona - Burak Ayy](https://burakayy.com/blog/how-arima-works)
-* [Treinamento SARIMA passo a passo - MLPills](https://mlpills.dev/time-series/how-to-train-a-sarima-model-step-by-step/)
-* [Comparação ARIMA, SARIMA, SARIMAX - Towards Data Science](https://towardsdatascience.com/time-series-forecasting-with-arima-sarima-and-sarimax-ee61099e78f6/)
-* [Forecasting com SARIMA - Medium](https://medium.com/@ozdogar/time-series-forecasting-using-sarima-python-8db28f1d8cfc)
-* [Estimating ARIMA and SARIMA coefficients using genetic algorithm - Medium](https://medium.com/@mouse3mic3/estimating-arima-and-sarima-coefficients-using-genetic-algorithm-03f24ab66589)
-* [ARIMA from scratch part 1 - Medium](https://medium.com/@learn-simplified/build-arima-model-from-scratch-part-1-b72b73ba230f)
-* [ARIMA Tutorial - Datacamp](https://www.datacamp.com/tutorial/arima)
-* [ARIMA from scratch - Kaggle](https://www.kaggle.com/code/phunghieu/arima-from-scratch)
+- [Forecasting with artificial neural networks: The state of the art (OSC Open)](https://www.oscogen.ethz.ch/members/literature_restricted%20access/ann_for_001.pdf)
 
-### 🧠 Redes Neurais Recorrentes (RNN) e LSTM
-* [LSTM com Tensorflow/Keras - Curiousily](https://curiousily.com/posts/time-series-forecasting-with-lstms-using-tensorflow-2-and-keras-in-python/)
-* [LSTM para COVID-19 - Curiousily](https://curiousily.com/posts/time-series-forecasting-with-lstm-for-daily-coronavirus-cases/)
-* [Previsão de Demanda com LSTM - Curiousily](https://curiousily.com/posts/demand-prediction-with-lstms-using-tensorflow-2-and-keras-in-python/)
-* [LSTM no YouTube (tutorial)](https://www.youtube.com/watch?v=c0k-YLQGKjY&t=1379s)
-* [Exemplo prático de LSTM no Kaggle](https://www.kaggle.com/code/paulorzp/laborat-rio-12b-usando-lstm-em-s-ries-temporais)
-* [Vantagens e Desvantagens do LSTM - Medium](https://medium.com/@prudhviraju.srivatsavaya/lstm-implementation-advantages-and-diadvantages-914a96fa0acb)
-* [Previsão de ações com LSTM - Medium](https://medium.com/datarisk-io/introdu%C3%A7%C3%A3o-%C3%A0s-redes-lstm-prevendo-valor-de-a%C3%A7%B5es-na-bolsa-df270ca0cee5)
+---
 
-### ⚙️ Pré-processamento de Séries Temporais
-* [Pré-processamento de Séries Temporais - 365 Data Science](https://365datascience.com/tutorials/time-series-analysis-tutorials/pre-process-time-series-data/)
-* [Preprocessing para aprendizado supervisionado - Towards Data Science](https://towardsdatascience.com/preprocessing-time-series-data-for-supervised-learning-2e27493f44ae)
-* [Técnica de Data Windowing - LinkedIn](https://www.linkedin.com/pulse/data-windowing-technique-used-time-series-forecasting-alejandro/)
-* [Rolling Windows - Medium](https://medium.com/@karamel.itu/time-series-rolling-windows-5cf9ec500e83)
-* [EDA em Séries Temporais - Medium](https://medium.com/data-and-beyond/mastering-exploratory-data-analysis-eda-everything-you-need-to-know-7e3b48d63a95)
-* [Preprocessing Time Series to Windowed Datasets - Medium](https://albertum.medium.com/preprocessing-time-series-to-windowed-datasets-a464799b1df7)
+## 🔬 Análise e Detecção de Anomalias em Séries Temporais
 
-### 📊 Análise e Visualização de Séries Temporais
-* [Time Series with Plotly - Plotly](https://plotly.com/python/time-series/)
-* [Complete Guide on Time Series Analysis in Python - Kaggle](https://www.kaggle.com/code/prashant111/complete-guide-on-time-series-analysis-in-python)
-* [Basic time series with Matplotlib - Python Graph Gallery](https://python-graph-gallery.com/basic-time-series-with-matplotlib/)
-* [Matplotlib Time Series Line Plot - Datacamp](https://www.datacamp.com/tutorial/matplotlib-time-series-line-plot)
-* [Time Series Forecasting: Building Intuition - Kaggle](https://www.kaggle.com/code/iamleonie/time-series-forecasting-building-intuition)
+- [arXiv - Deep Learning for Time Series Anomaly Detection: A Survey](https://arxiv.org/abs/1905.13628)
+- [ScienceDirect - Anomaly detection in time series](https://www.sciencedirect.com/science/article/pii/S0378437121004076)
+- [IEEE - Review on Outlier/Anomaly Detection](https://ieeexplore.ieee.org/document/4626688)
+- [ACM - DL for Anomaly Detection in Time-Series](https://dl.acm.org/doi/full/10.1145/3691338)
+- [ACM - Microsoft Time-Series Anomaly Detection Service](https://dl.acm.org/doi/abs/10.14778/3538598.3538602)
+- [ACM - Anomaly Detection on Time Series](https://dl.acm.org/doi/abs/10.1145/3292500.3330680)
+- [IEEE - CNN + Transfer Learning for Time Series Anomaly Detection](https://ieeexplore.ieee.org/abstract/document/8926446)
 
-### 🎯 Seleção de Features
-* [Feature Selection for Time Series Forecasting: A Case Study (ACM)](https://dl.acm.org/doi/abs/10.1145/3444690)
-* [Basic Time Series Analysis Feature Selection - Kaggle](https://www.kaggle.com/code/creatrol/basic-time-series-analysis-feature-selection)
-* [Feature Selection Techniques in Machine Learning - Analytics Vidhya](https://www.analyticsvidhya.com/blog/2020/10/feature-selection-techniques-in-machine-learning/)
-* [Feature Selection - IBM](https://www.ibm.com/think/topics/feature-selection)
-* [Feature Selection Techniques in Machine Learning - Medium](https://nathanrosidi.medium.com/feature-selection-techniques-in-machine-learning-82c2123bd548)
+---
 
-### ➕ Outros Recursos
-* [Artigo 1 - IEEE](https://ieeexplore.ieee.org/abstract/document/5687485)
-* [Artigo 2 - ACM](https://dl.acm.org/doi/abs/10.1145/3691338)
-* [Artigo 3 - ACM](https://dl.acm.org/doi/abs/10.1145/3292500.3330680)
-* [Artigo 4 - ACM](https://dl.acm.org/doi/10.1145/3529190.3529222)
-* [Artigo 5 - ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S2213138821004847)
-* [Artigo 6 - IOPscience](https://iopscience.iop.org/article/10.1088/1757-899X/407/1/012153)
-* [Artigo 7 - ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0048969723011968)
-* [Artigo 8 - ScienceDirect](https://www.sciencedirect.com/science/article/pii/S2666449620300074)
-* [Artigo 9 - MDPI](https://www.mdpi.com/1999-5903/15/8/255)
-* [Artigo 10 - ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S2213138821004847)
-* [Artigo 11 - IOPscience](https://iopscience.iop.org/article/10.1088/1757-899X/407/1/012153)
-* [Artigo 12 - ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0048969723011968)
-* [Artigo 13 - ScienceDirect](https://www.sciencedirect.com/science/article/pii/S2666449620300074)
-* [Artigo 14 - MDPI](https://www.mdpi.com/1999-5903/15/8/255)
-* [Artigo 15 - ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S2213138821004847)
-* [Artigo 16 - IOPscience](https://iopscience.iop.org/article/10.1088/1757-899X/407/1/012153)
-* [Artigo 17 - ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0048969723011968)
-* [Artigo 18 - ScienceDirect](https://www.sciencedirect.com/science/article/pii/S2666449620300074)
-* [Artigo 19 - MDPI](https://www.mdpi.com/1999-5903/15/8/255)
-* [Time Series Analysis - Academic Oxford](https://academic.oup.com/book/53326?login=false)
-* [Link 2 - Youtube](https://www.youtube.com/watch?v=jR0phoeXjrc)
+## 🧠 Previsão Híbrida e Otimização
+
+- [Hybrid Time Series Forecasting Methods for Travel Time Prediction (ScienceDirect)](https://www.sciencedirect.com/science/article/pii/S111001682100613X)
+- [Understanding Memetic Algorithms (IndiaAI)](https://indiaai.gov.in/article/understanding-memetic-algorithm)
+- [Computationally Efficient Hybrid ARIMA-SVR Model (IEEE)](https://ieeexplore.ieee.org/abstract/document/9523565)
+- [Memetic Algorithm for Pattern Recognition (CBRN)](https://sbic.org.br/eventos/cbrn_2007/50100078-2/)
+
+---
+
+## 🧮 Modelos ARIMA e SARIMA
+
+- [ARIMA do zero em Python - Medium](https://medium.com/analytics-vidhya/arima-model-from-scratch-in-python-489e961603ce)
+- [Como o ARIMA funciona - Burak Ayy](https://burakayy.com/blog/how-arima-works)
+- [Treinamento SARIMA passo a passo - MLPills](https://mlpills.dev/time-series/how-to-train-a-sarima-model-step-by-step/)
+- [Comparação ARIMA, SARIMA, SARIMAX - Towards Data Science](https://towardsdatascience.com/time-series-forecasting-with-arima-sarima-and-sarimax-ee61099e78f6/)
+- [Forecasting com SARIMA - Medium](https://medium.com/@ozdogar/time-series-forecasting-using-sarima-python-8db28f1d8cfc)
+- [Estimando coeficientes ARIMA/SARIMA com GA - Medium](https://medium.com/@mouse3mic3/estimating-arima-and-sarima-coefficients-using-genetic-algorithm-03f24ab66589)
+- [ARIMA from scratch part 1 - Medium](https://medium.com/@learn-simplified/build-arima-model-from-scratch-part-1-b72b73ba230f)
+- [ARIMA Tutorial - Datacamp](https://www.datacamp.com/tutorial/arima)
+- [ARIMA from scratch - Kaggle](https://www.kaggle.com/code/phunghieu/arima-from-scratch)
+
+---
+
+## 🔁 RNN, LSTM e Séries Temporais com Deep Learning
+
+- [LSTM com Tensorflow/Keras - Curiousily](https://curiousily.com/posts/time-series-forecasting-with-lstms-using-tensorflow-2-and-keras-in-python/)
+- [LSTM para COVID-19 - Curiousily](https://curiousily.com/posts/time-series-forecasting-with-lstm-for-daily-coronavirus-cases/)
+- [Previsão de Demanda com LSTM - Curiousily](https://curiousily.com/posts/demand-prediction-with-lstms-using-tensorflow-2-and-keras-in-python/)
+- [LSTM no YouTube (tutorial)](https://www.youtube.com/watch?v=c0k-YLQGKjY&t=1379s)
+- [Kaggle - LSTM em Séries Temporais (Laboratório)](https://www.kaggle.com/code/paulorzp/laborat-rio-12b-usando-lstm-em-s-ries-temporais)
+- [Vantagens e Desvantagens do LSTM - Medium](https://medium.com/@prudhviraju.srivatsavaya/lstm-implementation-advantages-and-diadvantages)
