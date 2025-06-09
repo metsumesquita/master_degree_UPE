@@ -235,6 +235,17 @@ Um conceito fundamental na análise de séries temporais é o de **ruído branco
 
 ---
 
+Recursos de defasagem e recursos de janela
+Os recursos de defasagem são valores em intervalos de tempo anteriores que são considerados úteis porque são criados com base na suposição de que o que aconteceu no passado pode influenciar ou conter um tipo de informação intrínseca sobre o futuro. Por exemplo, pode ser vantajoso gerar recursos para vendas que ocorreram em dias anteriores às 16h00 se você quiser prever vendas semelhantes às 16h00 do dia seguinte.
+
+Uma categoria interessante de recursos de defasagem é chamada de recursos de defasagem aninhados. Para criar recursos de defasagem aninhados, os cientistas de dados devem identificar um período de tempo fixo no passado e, em seguida, agrupar os valores dos recursos por esse período de tempo - por exemplo, o número de itens vendidos nas duas horas anteriores, nos três dias anteriores e na semana anterior.
+A operação de adicionar recursos de defasagem é chamada de método de janela deslizante ou recursos de janela. O exemplo acima mostra como aplicar um método de janela deslizante com uma largura de janela de oito. Os recursos de janela são um resumo dos valores em uma janela fixa de intervalos de tempo anteriores.
+
+Dependendo do cenário da série temporal, você pode expandir a largura da janela e incluir mais recursos defasados. Uma pergunta comum que os cientistas de dados fazem antes de realizar a operação de adicionar recursos de defasagem é o tamanho da janela. Uma boa abordagem seria criar uma série de diferentes larguras de janela e, alternativamente, adicioná-las e removê-las do conjunto de dados para ver qual delas tem um efeito positivo mais evidente no desempenho do modelo.
+
+
+
+
 ## 📚 6. Aplicações Práticas na Seleção de Modelos ARIMA
 
 Os gráficos ACF e PACF são as ferramentas primárias e mais intuitivas para determinar os parâmetros $p$, $d$, e $q$ de um modelo ARIMA (AutoRegressive Integrated Moving Average), ou seus análogos sazonais para SARIMA.
@@ -1091,7 +1102,28 @@ Outras técnicas e conceitos importantes incluem:
 * **A Transformada de Fourier Finita e o Periodograma:** Ferramentas para estimar o espectro de uma série temporal finita.
 * **Estimadores Suavizados:** Métodos para reduzir a variância nas estimativas espectrais obtidas do periodograma.
 ```
+---
+Divisão dos Dados (Train/Test/Validation Split): Separar os dados históricos em conjuntos para treinamento do modelo, teste e, possivelmente, validação. É crucial que essa divisão respeite a ordem temporal, ou seja, os dados de teste devem ser posteriores aos dados de treino
 
+Estatísticas de Janela (Rolling/Expanding Window Statistics): Cálculos como média móvel, desvio padrão móvel, etc., sobre períodos recentes
+
+Lags da própria série: Valores passados da série que servem como preditores. A análise de ACF/PACF pode ajudar a identificar lags relevantes
+
+Seleção e Definição do(s) Modelo(s): Escolher o(s) algoritmo(s) de previsão a serem utilizados, como ARIMA, modelos de Suavização Exponencial (como Holt-Winters), modelos de Machine Learning (como Regressão Linear, Random Forest, SVM) ou Redes Neurais (como LSTMs), ou uma combinação/abordagem híbrida
+
+Treinamento do(s) Modelo(s): Ajustar o(s) modelo(s) selecionado(s) aos dados de treinamento. Isso pode envolver a otimização de hiperparâmetros
+
+Treinamento do(s) Modelo(s): Ajustar o(s) modelo(s) selecionado(s) aos dados de treinamento. Isso pode envolver a otimização de hiperparâmetros
+
+Previsão (Forecasting): Utilizar o(s) modelo(s) treinado(s) para gerar previsões para períodos futuros (no conjunto de teste ou validação)
+
+Desnormalização / Back-transformation (se aplicável): Se a normalização (como MinMax) foi aplicada às variáveis de entrada do modelo e/ou se a previsão de um componente (como o resíduo) foi feita em escala normalizada, a previsão gerada pelo modelo deve ser DESNORMALIZADA (transformada de volta) para a escala original da série temporal. Este passo é fundamental para que a previsão final tenha a magnitude e unidades corretas [Como discutimos anteriormente; 470 menciona o processo de desnormalização].
+
+Combinação / Recomposição (se aplicável): Em abordagens que envolvem a decomposição da série ou o uso de múltiplos modelos para prever diferentes componentes (por exemplo, prever a sazonalidade separadamente ou modelar os resíduos de um primeiro modelo com um segundo modelo), as previsões dos componentes individuais (após a desnormalização, se necessário) precisam ser combinadas para gerar a previsão final da série original [Como discutimos anteriormente; 140 descreve a combinação de previsões da componente sazonal e da série ajustada; 461 menciona combinação de modelos].
+
+Avaliação do Desempenho: Comparar as previsões finais (agora na escala original) com os valores reais no conjunto de teste/validação usando métricas de avaliação apropriadas (como RMSE, MAE, MAPE, etc.)
+
+Validação dos Resíduos do Modelo Final: Após o modelo ser ajustado e as previsões geradas, é importante analisar os resíduos (a diferença entre os valores reais e as previsões no conjunto de treino/validação) para garantir que eles se assemelham a um ruído branco (ou seja, não há mais padrões temporais não explicados pelo modelo)
 ---
 # 📚 Repositório de Links e Materiais
 
