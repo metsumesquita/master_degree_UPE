@@ -734,7 +734,18 @@ print(df_resultados_adf)
 ---
 O Teste ADF é uma ferramenta fundamental na análise de séries temporais. Ele permite identificar se transformações como diferenciação (differencing) são necessárias antes de aplicar modelos como ARIMA ou SARIMA. Uma vez identificada a presença de não estacionariedade, podemos aplicar transformações e reavaliar com o ADF até que a estacionariedade seja alcançada.
 
+----
+An LSTM is more or less an RNN that uses additional weights to determine when its storage cells are written to, read from, or erased. In an RNN the cells are simply written to and read from every time.
 
+So you need to store those additional weights if you are using an LSTM, and you also need additional operations to compute how „open“ the cells are to being written and read. This „openness“ is also stored as a so-called cell state alongside the contents of the cell, meaning you need more storage there as well.
+
+With how fast computers are, it usually doesn’t make a huge difference, but if you stack a lot of LSTMs or have really long sequences, like, thousands of elements, it adds up.
+
+However, the additional logic also makes LSTMs more powerful and stable. So there are often situations where you would need several RNN layers to replace a single LSTM layer - in which case the LSTM is more efficient.
+
+About sequence length, I usually start with a length of 20, so your 19 is already as close as it gets. You should look into whether increasing it further also further improves performance though.
+
+Edit: I‘d say that typically, RNNs are stable enough to handle sequences of a few dozen to maybe around a hundred values. After that, you‘ll start to really see the benefits of LSTMs, which can process into the thousands of values. If you have a sequence length of, like, ten thousand values or beyond that, you should look into S5, H3 if what you’re doing needs associative recall of specific old sequence elements, or other sequence model architecture based on SSMs.
 --- 
 ### 🔗 Referências
 * [Pré-processamento de Séries Temporais - 365 Data Science](https://365datascience.com/tutorials/time-series-analysis-tutorials/pre-process-time-series-data/)
