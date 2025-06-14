@@ -1197,6 +1197,34 @@ for i, df in enumerate(dataframes_to_process):
 df_data_time = process_time_series_dataframe(original_df)```
 ```
 
+###visualização da serie temporal
+
+``` python
+import matplotlib.pyplot as plt
+
+def visualize_dataframe(df, df_name):
+    """
+    Visualiza os dados da primeira coluna de um DataFrame com base no índice temporal.
+
+    Args:
+        df (pd.DataFrame): DataFrame com índice do tipo datetime.
+        df_name (str): Nome descritivo para o gráfico.
+    """
+    plt.figure(figsize=(18, 4))
+
+    # Pega a primeira coluna (índice 0)
+    plt.plot(df.index, df.iloc[:, 0], label=df.columns[0])
+
+    # Título e eixos
+    plt.title(f"{df_name} ao longo do tempo", fontsize=16, fontweight='bold')
+    plt.xlabel("Tempo")
+    plt.ylabel("Valores")
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+```
 ---
 # 📚 Repositório de Links e Materiais
 
